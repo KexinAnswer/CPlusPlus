@@ -1,0 +1,4 @@
+﻿  5.23.cpp
+g:\github\cplusplus\code_5_23\code_5_23\5.23.cpp(23): warning C4305: “初始化”: 从“int”到“char”截断
+g:\github\cplusplus\code_5_23\code_5_23\5.23.cpp(23): warning C4309: “初始化”: 截断常量值
+  Code_5_23.vcxproj -> G:\GitHub\CPlusPlus\Code_5_23\Debug\Code_5_23.exe
