@@ -1,0 +1,4 @@
+﻿  5.24.cpp
+g:\github\cplusplus\code_5_24\code_5_24\5.24.cpp(85): warning C4018: “<”: 有符号/无符号不匹配
+g:\github\cplusplus\code_5_24\code_5_24\5.24.cpp(88): warning C4018: “<”: 有符号/无符号不匹配
+  Code_5_24.vcxproj -> G:\GitHub\CPlusPlus\Code_5_24\Debug\Code_5_24.exe
