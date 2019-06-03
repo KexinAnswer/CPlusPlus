@@ -1,0 +1,6 @@
+﻿  day_08.cpp
+c:\users\可芯\source\repos\code_5_28\code_5_28\day_08.cpp(21): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\可芯\source\repos\code_5_28\code_5_28\day_08.cpp(27): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\可芯\source\repos\code_5_28\code_5_28\day_08.cpp(34): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\可芯\source\repos\code_5_28\code_5_28\day_08.cpp(39): warning C4018: “<”: 有符号/无符号不匹配
+  Code_5_28.vcxproj -> C:\Users\可芯\source\repos\Code_5_28\Debug\Code_5_28.exe
