@@ -1,0 +1,4 @@
+﻿  day19.cpp
+g:\github\cplusplus\code_6_10\code_6_10\day19.cpp(21): warning C4018: “<”: 有符号/无符号不匹配
+g:\github\cplusplus\code_6_10\code_6_10\day19.cpp(23): warning C4018: “<”: 有符号/无符号不匹配
+  Code_6_10.vcxproj -> G:\GitHub\CPlusPlus\Code_6_10\Debug\Code_6_10.exe
