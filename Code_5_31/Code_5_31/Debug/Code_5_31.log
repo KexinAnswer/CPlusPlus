@@ -1,0 +1,3 @@
+﻿  day11.cpp
+g:\github\cplusplus\code_5_31\code_5_31\day11.cpp(16): warning C4554: “&”: 检查运算符优先级是否存在的可能的错误；使用括号阐明优先级
+  Code_5_31.vcxproj -> G:\GitHub\CPlusPlus\Code_5_31\Debug\Code_5_31.exe
