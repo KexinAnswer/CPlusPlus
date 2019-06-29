@@ -1,2 +1,5 @@
 ﻿  client.cpp
-  TCP_Client.vcxproj -> C:\Users\可芯\source\repos\TCP_Client\Debug\TCP_Client.exe
+g:\github\cplusplus\tcp_client\tcp_client\client.cpp(92): warning C4101: “hostname”: 未引用的局部变量
+g:\github\cplusplus\tcp_client\tcp_client\client.cpp(55): warning C4101: “iLen”: 未引用的局部变量
+g:\github\cplusplus\tcp_client\tcp_client\client.cpp(92): warning C4101: “sendBuf”: 未引用的局部变量
+  TCP_Client.vcxproj -> G:\GitHub\CPlusPlus\TCP_Client\Debug\TCP_Client.exe

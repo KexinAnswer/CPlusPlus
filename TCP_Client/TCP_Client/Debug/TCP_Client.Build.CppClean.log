@@ -1,9 +1,3 @@
-c:\users\可芯\source\repos\tcp_client\debug\tcp_client.exe
-c:\users\可芯\source\repos\tcp_client\debug\tcp_client.ilk
-c:\users\可芯\source\repos\tcp_client\debug\tcp_client.pdb
-c:\users\可芯\source\repos\tcp_client\tcp_client\debug\vc141.idb
-c:\users\可芯\source\repos\tcp_client\tcp_client\debug\vc141.pdb
-c:\users\可芯\source\repos\tcp_client\tcp_client\debug\tcp_client.tlog\cl.command.1.tlog
-c:\users\可芯\source\repos\tcp_client\tcp_client\debug\tcp_client.tlog\link.command.1.tlog
-c:\users\可芯\source\repos\tcp_client\tcp_client\debug\tcp_client.tlog\link.read.1.tlog
-c:\users\可芯\source\repos\tcp_client\tcp_client\debug\tcp_client.tlog\link.write.1.tlog
+g:\github\cplusplus\tcp_client\tcp_client\debug\vc141.idb
+g:\github\cplusplus\tcp_client\tcp_client\debug\vc141.pdb
+g:\github\cplusplus\tcp_client\tcp_client\debug\tcp_client.tlog\cl.command.1.tlog
