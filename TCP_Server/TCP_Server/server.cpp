@@ -2,7 +2,7 @@
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #pragma comment(lib, "Ws2_32.lib")
 
-//#include <thread>
+#include <thread>
 #include <WinSock2.h>
 #include <iostream>
 #include <string.h>
@@ -10,31 +10,15 @@
 
 using namespace std;
 
-DWORD WINAPI FaSong(LPVOID lpParamter, SOCKET& sockConn) {
+void Send(SOCKET* sockConn)
+{
 	while (1) {
-		int iLen;
-		char recvBuf[1024] = "\0";
-		iLen = recv(sockConn, recvBuf, 1024, 0);//接收数据
-		if (iLen == SOCKET_ERROR)
-		{
-			cout << "recv() fail:" << WSAGetLastError() << endl;
-			break;
-		}
-
-		recvBuf[iLen] = '\0';
-		cout << "服务器-> " << recvBuf << endl;
-	}
-
-	return 0L;
-}
-DWORD WINAPI JieShou(LPVOID lpParamter, SOCKET& sockConn) {
-	int err;
-	while (1) {
+		int err;
 		char sendt[1024] = { 0 };
-		std::cout << "客户端-> ";
+		//std::cout << "输入-> ";
 		scanf("%s", &sendt);
 		///strcpy(sendt, recvBuf);
-		err = send(sockConn, (const char*)&sendt, strlen(sendt) + 1, 0);//发送数据
+		err = send(*sockConn, (const char*)&sendt, strlen(sendt) + 1, 0);//发送数据
 		if (err == SOCKET_ERROR)
 		{
 			cout << "send() fail:" << WSAGetLastError() << endl;
@@ -42,7 +26,26 @@ DWORD WINAPI JieShou(LPVOID lpParamter, SOCKET& sockConn) {
 		}
 	}
 
-	return 0L;
+	return;
+}
+
+void Recv(SOCKET* sockConn)
+{
+	while (1) {
+		int iLen;
+		char recvBuf[1024] = "\0";
+		iLen = recv(*sockConn, recvBuf, 1024, 0);//接收数据
+		if (iLen == SOCKET_ERROR)
+		{
+			cout << "recv() fail:" << WSAGetLastError() << endl;
+			break;
+		}
+
+		recvBuf[iLen] = '\0';
+		cout  << recvBuf << " from Client" << endl;
+	}
+
+	return;
 }
 
 int main(int argc, char *argv[])
@@ -72,7 +75,7 @@ int main(int argc, char *argv[])
 	addrSrv.sin_port = htons(DEFAULT_PORT);//字节顺序转换
 
 	//绑定本地主机IP和端口
-	err = bind(sockSrv, (SOCKADDR*)&addrSrv, sizeof(SOCKADDR));
+	err = ::bind(sockSrv, (SOCKADDR*)&addrSrv, sizeof(SOCKADDR));
 	if (err != 0)
 	{
 		cout << "bind() fail:" << WSAGetLastError() << endl;
@@ -118,32 +121,33 @@ int main(int argc, char *argv[])
 		while (1)
 		{
 			//std::FS(FaSong);
-			HANDLE FS = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)FaSong(NULL, sockConn), NULL, 0, NULL);
+			std::thread t1(Send, &sockConn);
+			std::thread t2(Recv, &sockConn);
+			t1.join();
+			t2.join();
+			#if 0
+			char recvBuf[1024] = "\0";
+			iLen = recv(sockConn, recvBuf, 1024, 0);//接收数据
+			if (iLen == SOCKET_ERROR)
+			{
+				cout << "recv() fail:" << WSAGetLastError() << endl;
+				break;
+			}
 
-			//char recvBuf[1024] = "\0";
-			//iLen = recv(sockConn, recvBuf, 1024, 0);//接收数据
-			//if (iLen == SOCKET_ERROR)
-			//{
-			//	cout << "recv() fail:" << WSAGetLastError() << endl;
-			//	break;
-			//}
+			recvBuf[iLen] = '\0';
+			cout  << "服务器-> " << recvBuf << endl;
+			char sendt[1024] = {0};
+			std::cout << "客户端-> ";
+			scanf("%s", &sendt);
+			///strcpy(sendt, recvBuf);
+			err = send(sockConn, (const char*)&sendt, strlen(sendt) + 1, 0);//发送数据
+			if (err == SOCKET_ERROR)
+			{
+				cout << "send() fail:" << WSAGetLastError() << endl;
+				break;
+			}
 
-			//recvBuf[iLen] = '\0';
-			//cout  << "服务器-> " << recvBuf << endl;
-			//char sendt[1024] = {0};
-			//std::cout << "客户端-> ";
-			//scanf("%s", &sendt);
-			/////strcpy(sendt, recvBuf);
-			//err = send(sockConn, (const char*)&sendt, strlen(sendt) + 1, 0);//发送数据
-			//if (err == SOCKET_ERROR)
-			//{
-			//	cout << "send() fail:" << WSAGetLastError() << endl;
-			//	break;
-			//}
-
-			HANDLE JS = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)JieShou(NULL, sockConn), NULL, 0, NULL);
-			CloseHandle(FS);
-			CloseHandle(JS);
+			#endif		
 		}
 
 		closesocket(sockConn);//关闭套接字
