@@ -1,0 +1,82 @@
+// 复制复杂链表
+
+/*
+struct RandomListNode {
+    int label;
+    struct RandomListNode *next, *random;
+    RandomListNode(int x) :
+            label(x), next(NULL), random(NULL) {
+    }
+};
+*/
+
+class Solution {
+public:
+    
+    void CreateCloneNode(RandomListNode* pHead){
+        if(pHead == NULL){
+            return;
+        }
+        RandomListNode* CloneNode = new RandomListNode(0);
+        RandomListNode* CloneNewHead = CloneNode;
+        CloneNode->label = pHead->label;
+        CloneNode->next = pHead->next;
+        pHead->next = CloneNode;
+        
+        RandomListNode* cur = CloneNode->next;
+        while(cur != NULL){
+            CloneNode = new RandomListNode(0);
+            CloneNode->label = cur->label;
+            CloneNode->next = cur->next;
+            CloneNode->random = NULL;
+            cur->next = CloneNode;
+            cur  = CloneNode->next;
+        }
+    }
+    
+
+
+    void ConnectRandomNodes(RandomListNode* pHead)
+    {
+        RandomListNode* pNode=pHead;
+        while(pNode!=NULL)
+        {
+            RandomListNode* pCloned=pNode->next;
+            if(pNode->random!=NULL)
+                pCloned->random=pNode->random->next;
+            pNode=pCloned->next;
+        }
+    }
+    
+    RandomListNode* ReconnectRandomList(RandomListNode* pHead){
+
+        RandomListNode* cur = pHead;
+        RandomListNode* CloneNewHead = NULL;
+        RandomListNode* CloneCur = NULL;
+        
+        if(pHead != NULL){
+            CloneNewHead = cur->next;
+            CloneCur = cur->next;
+            cur->next = CloneCur->next;
+            cur = cur->next;
+        }
+        while(cur != NULL){
+            CloneCur->next = cur->next;
+            CloneCur = CloneCur->next;
+            cur->next = CloneCur->next;
+            cur = cur->next;
+        }
+        return CloneNewHead;
+    }
+    
+    
+
+
+    
+    RandomListNode* Clone(RandomListNode* pHead)
+    {
+        CreateCloneNode(pHead);
+        ConnectRandomNodes(pHead);
+        return ReconnectRandomList(pHead);
+    }
+};
