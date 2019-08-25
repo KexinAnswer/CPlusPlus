@@ -1,0 +1,61 @@
+class UnionFindSet {
+public:
+	UnionFindSet(int size)
+		:ufs_(size, -1) {}
+
+	bool Union(int x, int y) {
+		int root1 = Find(x);
+		int root2 = Find(y);
+		if (root1 == root2) {
+			return false;
+		}
+
+		ufs_[root1] += ufs_[root2];
+		ufs_[root2] = root1;
+		return true;
+	}
+
+	int Count() {
+		int count = 0;
+		for (const auto& e : ufs_) {
+			if (e < 0) {
+				count++;
+			}
+		}
+
+		return count;
+	}
+
+	int Max() {
+		int max = 0;
+		for (const auto& e : ufs_) {
+			if (e < max) {
+				max = e;
+			}
+		}
+
+		return max * -1;
+	}
+
+private:
+	int Find(int x) {
+		while (ufs_[x] > 0) {
+			x = ufs_[x];
+		}
+		return x;
+	}
+
+	std::vector<int> ufs_;
+};
+
+int findCircleNum(std::vector<std::vector<int>>& arr) {
+	UnionFindSet ufs(arr.size());
+	for (int i = 0; i < arr.size(); ++i) {
+		for (int j = i + 1; j < arr.size(); ++j) {
+			if (arr[i][j] >= 1) {
+				ufs.Union(i , j);
+			}
+		}
+	}
+	return ufs.Max();
+}
