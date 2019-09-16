@@ -1,0 +1,5 @@
+﻿  code1.cpp
+c:\users\可芯\source\repos\去哪网\去哪网\code1.cpp(20): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\可芯\source\repos\去哪网\去哪网\code1.cpp(34): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\可芯\source\repos\去哪网\去哪网\code1.cpp(40): warning C4018: “<”: 有符号/无符号不匹配
+  去哪网.vcxproj -> C:\Users\可芯\source\repos\去哪网\Debug\去哪网.exe
